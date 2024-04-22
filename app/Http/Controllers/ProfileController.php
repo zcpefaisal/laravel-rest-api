@@ -18,12 +18,12 @@ class ProfileController extends Controller
     }
 
 
-    public function show(): JsonResponse
+    public function show()
     {
         try{
             return Auth::guard()->user();
-        } catch (Exception $e) {
-            return $this->responseError([], $e->getMessage());
+        } catch (Exception $exception) {
+            return $this->responseError([], $exception->getMessage(), $exception->getCode());
         }
     }
 
@@ -33,8 +33,8 @@ class ProfileController extends Controller
             Auth::guard()->user()->token()->revoke();
             Auth::guard()->user()->token()->delete();
             return $this->responseSuccess('', 'User Logged out');
-        } catch (Exception $e) {
-            return $this->responseError([], $e->getMessage());
+        } catch (Exception $exception) {
+            return $this->responseError([], $exception->getMessage(), $exception->getCode());
         }
     }
 }

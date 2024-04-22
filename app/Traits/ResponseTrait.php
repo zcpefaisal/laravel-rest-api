@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 
 trait ResponseTrait{
 
@@ -20,7 +21,7 @@ trait ResponseTrait{
             'message'=> $message,
             'data' => $data,
             'errors' => null,
-        ]);
+        ], Response::HTTP_OK);
     }
 
 
@@ -29,16 +30,17 @@ trait ResponseTrait{
      *
      * @param array|object $errors
      * @param string $message
+     * @param int $responseCode
      *
      * @return JsonResponse
      */
-    public function responseError($errors, $message = "Data is invalid") : JsonResponse{
+    public function responseError($errors, $message = "Data is invalid", int $responseCode = Response::HTTP_INTERNAL_SERVER_ERROR) : JsonResponse{
         return response()->json([
             'status' => true,
             'message'=> $message,
             'data' => null,
             'errors' => $errors,
-        ]);
+        ], $responseCode);
     }
 
 

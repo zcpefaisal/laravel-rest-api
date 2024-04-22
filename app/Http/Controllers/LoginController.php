@@ -22,8 +22,8 @@ class LoginController extends Controller
         try{
             $data = $this->auth->login($request->all());
             return $this->responseSuccess($data, "User Loged-in successlully");
-        } catch (Exception $e) {
-            return $this->responseError([], $e->getMessage());
+        } catch (Exception $exception) {
+            return $this->responseError([], $exception->getMessage(), $exception->getCode());
         }
     }
 }

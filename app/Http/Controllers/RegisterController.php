@@ -22,8 +22,8 @@ class RegisterController extends Controller
         try{
             $data = $this->auth->register($request->all());
             return $this->responseSuccess($data, "User registered successlully");
-        } catch (Exception $e) {
-            return $this->responseError([], $e->getMessage());
+        } catch (Exception $exception) {
+            return $this->responseError([], $exception->getMessage(), $exception->getCode());
         }
     }
 }
