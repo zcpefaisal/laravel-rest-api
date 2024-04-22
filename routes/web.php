@@ -14,13 +14,7 @@ use App\Models\Product;
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-
 
 Route::get('/', function () {
-    dd(product::all());
     return view('welcome');
 });

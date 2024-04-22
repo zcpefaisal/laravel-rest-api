@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use App\Repositories\ProductRepositories;
+use App\Repositories\ProductRepository;
 use App\Traits\ResponseTrait;
 use Exception;
 use Illuminate\Http\JsonResponse;
@@ -16,9 +16,9 @@ class ProductController extends Controller
 
     public $productRepository;
 
-    public function __construct(ProductRepositories $productRepositories)
+    public function __construct(ProductRepository $productRepository)
     {
-        $this->productRepository = $productRepositories;
+        $this->productRepository = $productRepository;
     }
     /**
      * Display a listing of the resource.
@@ -35,8 +35,8 @@ class ProductController extends Controller
             // return $this->responseSuccess([$products], "Product fatch successlully");
 
             // Type 2 :: call form product repository and product repository call form database
-            // $productRepositories = new ProductRepositories();
-            // return $this->responseSuccess([$productRepositories->getAll()], "Product fatch successlully");
+            // $productRepository = new ProductRepository();
+            // return $this->responseSuccess([$productRepository->getAll()], "Product fatch successlully");
 
             // Type 3 :: first do dependency injection of product repository in constructor then call
             return $this->responseSuccess([$this->productRepository->getAll(request()->perPage)], "Product fatch successlully");

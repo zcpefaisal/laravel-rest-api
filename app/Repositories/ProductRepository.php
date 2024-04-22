@@ -5,7 +5,7 @@ use App\Interfaces\CrudInterface;
 use App\Models\Product;
 use Illuminate\Contracts\Pagination\Paginator;
 
-class ProductRepositories implements CrudInterface{
+class ProductRepository implements CrudInterface{
 
     // without interface implement process
     // public function getAll() {
